@@ -13,13 +13,21 @@
   </header>
 
   <main>
+    <!-- Player dinámico -->
     <section class="player">
-      <h2>¡On Air!</h2>
-      <iframe src="http://EstadoSolido.on-air.fm/" 
-              width="300" height="150" frameborder="0" allow="autoplay">
-      </iframe>
+      <h2>🎶 On Air</h2>
+      <audio controls autoplay>
+        <source src="http://TU-SERVIDOR:PUERTO/stream" type="audio/mpeg">
+        Tu navegador no soporta el player.
+      </audio>
+      <div id="track-info">
+        <p><strong>Artista:</strong> <span id="artist"></span></p>
+        <p><strong>Canción:</strong> <span id="title"></span></p>
+        <p><strong>Álbum:</strong> <span id="album"></span></p>
+      </div>
     </section>
 
+    <!-- Programación -->
     <section class="programacion">
       <h2>Programación</h2>
       <table>
@@ -30,6 +38,7 @@
       </table>
     </section>
 
+    <!-- Podcast -->
     <section class="podcast">
       <h2>Podcast</h2>
       <p>Próximamente: entrevistas, historias y reflexiones sobre música y tecnología.</p>
@@ -40,5 +49,22 @@
     <p>© 2026 Estado Sólido Radio | San Pedro Sula - La Lima</p>
     <p>Síguenos en <a href="#">Instagram</a> | <a href="#">Discord</a></p>
   </footer>
+
+  <!-- Script para metadatos del stream -->
+  <script>
+    async function updateTrackInfo() {
+      try {
+        const response = await fetch("http://TU-SERVIDOR:PUERTO/status-json.xsl");
+        const data = await response.json();
+        const source = data.icestats.source;
+        document.getElementById("artist").textContent = source.artist || "Desconocido";
+        document.getElementById("title").textContent = source.title || "Sin título";
+        document.getElementById("album").textContent = source.album || "Single";
+      } catch (error) {
+        console.error("Error al obtener metadatos:", error);
+      }
+    }
+    setInterval(updateTrackInfo, 5000); // Actualiza cada 5 segundos
+  </script>
 </body>
 </html>
