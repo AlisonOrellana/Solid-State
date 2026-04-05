@@ -2,110 +2,344 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Estado Sólido Radio | Rock • Power Pop • Metal</title>
+  <meta name="description" content="Radio en vivo desde San Pedro Sula. Rock clásico, Power Pop y Metal. Escúchanos 24/7.">
+  <meta name="author" content="Alison Orellana">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos completos (por si style.css no carga) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      color: #eee;
+      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      max-width: 140px;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255,51,102,0.3);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(45deg, #ff3366, #ff6b35);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 2px;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
+
+    /* Reproductor */
+    .player-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.3s;
+    }
+
+    .player-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .live-badge {
+      display: inline-block;
+      background: #ff0000;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      animation: pulse 1.5s infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.98); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    iframe {
+      border-radius: 20px;
+      background: #000;
+      max-width: 100%;
+    }
+
+    /* Track info */
+    .track-info {
+      background: rgba(0,0,0,0.5);
+      border-radius: 20px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .track-info p {
+      margin: 0.3rem 0;
+    }
+
+    /* Parrilla de programación */
+    .section-title {
+      font-size: 1.8rem;
+      margin: 2rem 0 1rem;
+      border-left: 5px solid #ff6b35;
+      padding-left: 1rem;
+    }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .schedule-card {
+      background: rgba(0,0,0,0.4);
+      border-radius: 20px;
+      padding: 1.2rem;
+      border-left: 4px solid #ff6b35;
+      transition: transform 0.2s;
+    }
+
+    .schedule-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .schedule-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .schedule-card .time {
+      color: #ff6b35;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+
+    /* Botones */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(45deg, #ff3366, #ff6b35);
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(255,51,102,0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #ff6b35;
+    }
+
+    .btn-outline:hover {
+      background: #ff6b35;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.8rem;
+    }
+
+    footer a {
+      color: #ff6b35;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <img src="assets/logo.png" alt="Logo Estado Sólido" class="logo" onerror="this.style.display='none'">
-      <h1>⚡ Estado Sólido Radio</h1>
-      <p>🎸 Rock • Power Pop • Metal</p>
+      <img src="assets/logo.png" alt="Estado Sólido Radio" class="logo" onerror="this.style.display='none'">
+      <h1>⚡ ESTADO SÓLIDO RADIO</h1>
+      <p class="tagline">🎸 Rock • Power Pop • Metal</p>
+      <p class="tagline">📡 San Pedro Sula - La Lima</p>
     </header>
 
     <main>
-      <!-- REPRODUCTOR EN VIVO -->
+      <!-- REPRODUCTOR PRINCIPAL -->
       <div class="player-card">
-        <h2>🎙️ EN VIVO AHORA</h2>
+        <div class="live-badge">🔴 EN VIVO</div>
+        <h2>Escúchanos ahora</h2>
+        <!-- Reproductor oficial de MyRadioStream -->
         <iframe 
-          src="http://EstadoSolido.on-air.fm/" 
+          src="https://myradiostream.com/embed/EstadoSolido" 
           width="100%" 
-          height="200" 
+          height="160" 
           frameborder="0" 
           allow="autoplay; encrypted-media"
-          style="border-radius: 20px; max-width: 600px; margin: 0 auto; display: block;">
+          style="max-width: 500px; margin: 0 auto; display: block;">
         </iframe>
-        <p class="live-indicator" style="margin-top: 1rem;">🔴 TRANSMITIENDO DESDE BUTT</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">Si no escuchas automáticamente, toca el botón PLAY ▶️</p>
       </div>
 
       <!-- LO QUE SUENA AHORA -->
       <div class="player-card">
-        <h2>🎶 LO QUE SUENA AHORA</h2>
-        <div id="track-info">
-          <p><strong>🎤 Artista:</strong> <span id="artist">Esperando datos...</span></p>
-          <p><strong>🎵 Canción:</strong> <span id="title">--</span></p>
-          <p><strong>💿 Álbum:</strong> <span id="album">--</span></p>
+        <h2>🎶 Lo que suena ahora</h2>
+        <div class="track-info" id="track-info">
+          <p>🎤 <strong>Artista:</strong> <span id="artist">Conectando...</span></p>
+          <p>🎵 <strong>Canción:</strong> <span id="title">Esperando datos</span></p>
+          <p>💿 <strong>Álbum:</strong> <span id="album">--</span></p>
         </div>
-        <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 1rem;">Actualiza automáticamente cada 10 segundos</p>
+        <p style="font-size: 0.7rem; opacity: 0.6; margin-top: 0.5rem;">Actualiza cada 10 segundos</p>
       </div>
 
-      <!-- Programación -->
-      <h2>📅 Programación Diaria</h2>
+      <!-- PROGRAMACIÓN DIARIA -->
+      <h2 class="section-title">📅 Programación</h2>
       <div class="schedule-grid">
         <div class="schedule-card">
-          <h3>🎸 Rock Clásico</h3>
-          <p>10:00 - 12:00</p>
-          <small>Led Zeppelin, Pink Floyd, The Who</small>
+          <h3>🎸 Rock </h3>
+          <div class="time">⏰ 10:00 - 12:00</div>
+          <small>Pierce The Veil • Paramore • The Strokes • Sleeping With Sirens</small>
         </div>
         <div class="schedule-card">
           <h3>⚡ Power Pop</h3>
-          <p>12:00 - 14:00</p>
-          <small>Weezer, The Cars, Cheap Trick</small>
+          <div class="time">⏰ 12:00 - 14:00</div>
+          <small>Weezer • The Exploding Hearts • The Posies • Jellyfish</small>
         </div>
         <div class="schedule-card">
           <h3>🤘 Metal</h3>
-          <p>14:00 - 16:00</p>
-          <small>Metallica, Iron Maiden, Black Sabbath</small>
+          <div class="time">⏰ 14:00 - 16:00</div>
+          <small>Pantera • Slipknot • System Of A Down • Megadeth</small>
         </div>
       </div>
 
-      <!-- Podcast -->
+      <!-- EVENTOS DESTACADOS -->
+      <h2 class="section-title">🎪 Próximos eventos</h2>
       <div class="player-card">
-        <h2>🎙️ Podcast</h2>
-        <p>Próximamente: entrevistas, historias y reflexiones sobre música y tecnología.</p>
-        <a href="#" class="btn">📻 Próximamente</a>
+        <h3>📅 Viernes 11 de abril - 21:00hs</h3>
+        <p>🎤 <strong>Foro: "Historia del Power Pop"</strong> – Charla en vivo con playlist especial y chat abierto para pedidos</p>
+        <div class="btn-group">
+          <a href="#" class="btn">📢 Recordarme</a>
+          <a href="#" class="btn btn-outline">💬 Unirme al chat</a>
+        </div>
       </div>
 
-      <!-- Comunidad -->
+      <!-- PODCAST -->
+      <h2 class="section-title">🎙️ Podcast</h2>
       <div class="player-card">
-        <h2>💬 Comunidad</h2>
-        <p>Únete a nuestro Discord para pedir canciones, participar en foros y enterarte de eventos</p>
-        <a href="#" class="btn">🚀 Unirme al Discord</a>
-        <a href="#" class="btn">📅 Ver Eventos</a>
+        <p>Próximamente: entrevistas con músicos locales, historias del rock hondureño y reflexiones sobre música y tecnología.</p>
+        <a href="#" class="btn">📻 Ver episodios</a>
+      </div>
+
+      <!-- COMUNIDAD / FORO -->
+      <h2 class="section-title">💬 Comunidad</h2>
+      <div class="player-card">
+        <p>Únete a nuestro espacio para pedir canciones, participar en foros temáticos y enterarte primero de los eventos.</p>
+        <div class="btn-group">
+          <a href="#" class="btn">🚀 Discord</a>
+          <a href="#" class="btn btn-outline">📸 Instagram</a>
+          <a href="#" class="btn btn-outline">📧 Contacto</a>
+        </div>
       </div>
     </main>
 
     <footer>
       <p>© 2026 Estado Sólido Radio | San Pedro Sula - La Lima</p>
-      <p>Síguenos en <a href="#">Instagram</a> | <a href="#">Discord</a></p>
+      <p>🎧 Transmitiendo desde Honduras | Hecho con ❤️ para la escena rockera 2000s </p>
     </footer>
   </div>
 
+  <!-- SCRIPT PARA METADATOS -->
   <script>
     async function updateTrackInfo() {
       try {
+        // Intenta obtener los metadatos del servidor
         const response = await fetch("http://s6.myradiostream.com:50904/status-json.xsl");
         const data = await response.json();
-        const source = data.icestats.source;
-        if (source) {
+        
+        // Busca el source activo (puede estar en diferentes lugares según la configuración)
+        let source = null;
+        if (data.icestats && data.icestats.source) {
+          source = data.icestats.source;
+          // Si es un array, toma el primero
+          if (Array.isArray(source)) source = source[0];
+        }
+        
+        if (source && (source.artist || source.title)) {
           document.getElementById("artist").textContent = source.artist || "Desconocido";
           document.getElementById("title").textContent = source.title || "Sin título";
           document.getElementById("album").textContent = source.album || "Single";
         } else {
-          document.getElementById("artist").textContent = "Esperando transmisión...";
-          document.getElementById("title").textContent = "Inicia BUTT para ver la canción";
-          document.getElementById("album").textContent = "--";
+          // Fallback amigable: el stream está activo pero sin metadatos
+          document.getElementById("artist").textContent = "🎧 Transmitiendo en vivo";
+          document.getElementById("title").textContent = "¡Estamos al aire!";
+          document.getElementById("album").textContent = "Rock • Power Pop • Metal";
         }
       } catch (error) {
-        console.log("Error:", error);
-        document.getElementById("artist").textContent = "Transmitiendo en vivo";
-        document.getElementById("title").textContent = "Conectando...";
-        document.getElementById("album").textContent = "Esperando datos";
+        // El servidor no responde (normal si no envía metadatos)
+        console.log("Metadatos no disponibles");
+        document.getElementById("artist").textContent = "Estado Sólido Radio";
+        document.getElementById("title").textContent = "En vivo 24/7";
+        document.getElementById("album").textContent = "Sintonízanos";
       }
     }
     
+    // Actualiza cada 10 segundos
     setInterval(updateTrackInfo, 10000);
+    // Ejecuta al cargar
     updateTrackInfo();
   </script>
 </body>
